@@ -1,0 +1,139 @@
+extends layout.pug
+block meta
+  title Jamal Senouci
+  meta(name="description" content="Personal website of Jamal Senouci - Data Scientist based in the UK")
+  meta(name="keywords" content="Personal Jamal Senouci CV ")
+block content
+    a#experience(style="display: block; position: relative; top: -60px; visibility: hidden;")
+    .container.section#experience
+        h2 Experience
+        a(href='http://1drv.ms/19Ku5gr' target="_blank")
+            i(class="glyphicon glyphicon-download pull-right" aria-hidden="true")
+        .ohal.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.ohal-group.com")
+                                img.img-responsive(src="public/images/ohal_logo.png" alt="Ohal Logo")
+                .col-xs-4
+                        strong Senior Analyst
+                        br
+                        br
+                        | Ohal is an econometrics consultancy sitting within WPP group that focuses on measuring effectiveness of marketing campaigns.
+                .col-xs-4
+                        | 2012-2014
+        .warwick.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.warwick.ac.uk")
+                                img.img-responsive(src="public/images/warwick.jpg" alt="warwick logo")
+                .col-xs-4
+                        strong MSc Economics and International Financial Economics
+                        br
+                        br
+                        | Dissertation title: "A Bootstrapped Approach to UK Bank Risk and Shareholder Control"
+                .col-xs-4
+                        | 2011-2012
+        .york.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.york.ac.uk")
+                                img.img-responsive(src="public/images/york.jpg" alt="york logo")
+                .col-xs-4
+                        strong BSc Economics
+                        br
+                        br
+                        | Graduated with Upper Second Class Honours
+                .col-xs-4
+                        | 2008-2011
+        .glanceirw.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.glanceirw.com")
+                                img.img-responsive(src="public/images/glanceirw.png" alt="glanceirw logo")
+                .col-xs-4
+                        strong Web Developer
+                        br
+                        br
+                        | Designed and Created&nbsp;
+                        a(href="http://www.glanceirw.com") www.glanceirw.com&nbsp;
+                        | using AngularJS
+                .col-xs-4
+                        | Summer 2011
+        .stanford.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.stanford.edu")
+                                img.img-responsive(src="public/images/stanford.png" alt="stanford logo")
+                .col-xs-4
+                        strong Coursera Courses in Machine Learning and Mining Massive Datasets
+                        br
+                        br
+                        | Applications of Artificial Intelligence to dealing with increasingly large datasets.
+                .col-xs-4
+                        | Sep-Dec 2014
+        .gulfresearcher.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.gulfresearcher.com/en/")
+                                img.img-responsive(src="public/images/gulfresearcher.jpg" alt="gulf researcher logo")
+                .col-xs-4
+                        strong Temporary Senior Research Analyst
+                        br
+                        br
+                        | Research into Cosmetic, Healthcare, Public Sector and FMCG across MENA Region
+                .col-xs-4
+                        | Jan-Feb 2015
+        .starcom.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.smvgroup.com")
+                                img.img-responsive(src="public/images/starcom.jpg" alt="Starcom logo")
+                .col-xs-4
+                        strong Senior Analyst
+                        br
+                        br
+                        | Econometrics Lead at Starcom MediaVest Group Dubai, the leading media agency in the MENA region.
+                .col-xs-4
+                        | Feb - Mar 2015
+        .mediacom.cv.row(style="opacity:1; z-index:100; position:absolute")
+                .col-xs-4
+                        a(href="http://www.ohal-group.com")
+                                img.img-responsive(src="public/images/mediacom.jpg" alt="mediacom logo")
+                .col-xs-4
+                        strong Senior Analyst
+                        br
+                        br
+                        | Working within the Business Science department of MediaCom, one of the world's leading media agencies.
+                .col-xs-4
+                        | April 2015 - Present
+        .essex.cv.row(style="opacity:0; z-index:0; position:absolute")
+                .col-xs-4
+                        a(href="http://www.essex.ac.uk")
+                                img(src="public/images/essex.jpg" alt="essex logo")
+                .col-xs-4
+                        strong Agent-based Modelling Course
+                        br
+                        br
+                        | A week-long course in applied Agent-based Modelling with application to Marketing.
+                .col-xs-4
+                        | July 2014
+        #cv-vis.col-md-12
+    //
+        .container.section#portfolio
+            h2 Portfolio
+            #port-vis
+    a#contact(style="display: block; position: relative; top: -20px; visibility: hidden;")
+    .container.section#contact
+        h2 Get in Touch
+        form(role="form" method="post" action="#contact" class="col-xs-offset-2 col-xs-8")
+            div(class="form-group")
+                label(for="name") *Name
+                input(id="name" name="name" placeholder="Name" type="text" required="" class="form-control")
+            div(class="form-group")
+                label(for="email") *Email
+                input(id="email" name="email" placeholder="Email" type="email" required="" class="form-control")
+            div(class="form-group")
+                label(for="message") *Message
+                textarea(id="message" name="message" placeholder="Message" rows="3" required="" class="form-control")
+            input(id="submit" name="submit" type="submit" value="Submit" class="btn btn-success")
+        if(typeof msg !== 'undefined')
+            if(!!err)
+                div(class='msgbox err') #{msg}
+            else
+                div(class='msgbox success') #{msg}
+block scripts
+    script(src="http://d3js.org/d3.v3.min.js")
+    script(src='public/scripts/min/cv.js')

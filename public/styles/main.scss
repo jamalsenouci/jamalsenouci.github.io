@@ -1,0 +1,264 @@
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
+$icon-font-path : '../fonts/';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons';
+@import "compass/css3/transition";
+
+@import "webicons";
+
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: table; 
+   height: 0; 
+   clear: both;
+}
+
+body{
+	position:relative;
+	font-family:'Open Sans', Helvetica, Arial, sans-serif;
+}
+section,header,footer{
+	    padding:2%;
+}
+
+header{
+	box-sizing: content-box;
+    border-bottom:#eee solid 1px;
+    background:#fff;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:10000;
+    overflow: hidden;
+    width:96%;
+    height:60px;
+    transition:height, 0.3s;
+    h1{
+		float:left;
+		font-size: 1.8em;
+		margin-top:0.4em;
+		transition:all, 0.3s;
+    }
+    a{
+	    text-decoration:none;
+	    color:inherit;
+	}
+	nav{
+		float:right;
+		ul li{
+			list-style-type:none;
+			display: inline;
+			font-size: 1.4em;
+			color:#999;
+			margin:1.2em 0 0 0.7em;
+		    transition: all 0.3s;
+		}
+}
+}
+section{
+	min-height: 450px;
+    background: #fff;
+    margin-top:90px;
+	p{
+		font-size:1.2em;
+	}
+}
+
+footer{
+	border-top:#eee solid 1px;
+	p{
+	position:absolute;
+	}
+}
+
+h1, h2, h3{
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	color: #333;
+	font-weight: 300;
+	font-style: normal;
+	font-size:2.8em;
+	
+}
+li{
+	list-style-type:none;
+	margin-left:-40px;
+}
+
+a{
+	color:#428bca;
+	text-decoration:none;
+}
+
+.headerscroll{
+	padding-top:0;
+	padding-bottom: 0;
+	h1{
+		font-size:1.8em;
+	}
+}
+
+table{
+	width:600px;
+	height 150px
+	td{
+		padding:10px;
+		width: 350px
+		img{
+		width:350px;
+	}
+	}
+}
+img.linkedin{
+	width:30px
+}
+h2{
+	text-align: center
+}
+
+div.cv{
+	height:100px;
+	img{
+	max-height:100px;
+	margin:0 auto;
+	}
+}
+div.warwick img{
+	width:200px;
+}
+div.starcom img, div.glanceirw img{
+	margin-top:-40px;
+}
+.section{
+	min-height:100vh;
+	display: block; 
+	position: relative; 
+	margin-top:50px;
+}
+
+#home{
+	margin:0 auto;
+	display:block;
+	width:240px;
+	width:calc(50px * 6 + 30px * 3);
+	.webicon{
+		margin-left:50px;
+		margin-right:50px;
+	}
+}
+
+.portfolio{
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	height: 200px;
+	background:#eaeaea;
+	padding:10px;
+	border: white 1px solid;
+	border-radius:0px;
+	transition:1.5s;
+	position:absolute;
+	&:hover{
+		background:#999;
+		border-top: 3px solid #3D9970;
+		border-bottom: 3px solid #3D9970;
+		border-right: 3px solid #FF4136;
+		border-left : 3px solid #FF4136;
+		border-radius:50px;
+	}
+}
+#visualisations{
+	position:absolute;
+	width:50%;
+	left:50%;
+	&:before{
+		content: 'Visualisation';
+		transition:1.5s;
+	}
+}
+#datascience{
+	position:absolute;
+	top:400px;
+	width:100%;
+	&:before{
+		transition:1.5s;
+		content: 'Data Science'
+	}
+}
+#opensource{
+	position:absolute;
+	top:200px;
+	width:50%;
+	left:50%;
+	&:before{
+		transition:1.5s;
+		content: 'Open Source'
+	}
+}
+#webdesign{
+	height:400px;
+	width:50%;
+	&:before{
+		transition:1.5s;
+		content: 'Web Design'
+	}
+}
+
+#port-vis{
+	position:relative;
+}
+.pull-right{
+	float:right;
+}
+.glyphicon-download{
+	font-size: 1.5em;
+}
+
+.section h2{
+	padding-top:20px;
+}
+
+#experience{
+	h2{
+	margin-bottom:60px;
+	}
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis line,
+#cv-vis > svg > g > path{
+stroke-width:2px;
+stroke: #000;
+}
+.axis path {
+  fill: none;
+  stroke: #000;
+  stroke-width:2px;
+  shape-rendering: crispEdges;
+}
+.glyphicon{
+	z-index:100;
+}
+
+#webdesign.clicked, #opensource.clicked, #visualisations.clicked, #datascience.clicked{
+	height : 600px;
+	z-index : 100;
+	width:100%;
+	transform : rotateY(180deg);
+	left:0;
+	top:0;
+	&:before{
+	opacity:0;
+	}
+	&:hover{
+		border-radius:0;
+	}
+}
