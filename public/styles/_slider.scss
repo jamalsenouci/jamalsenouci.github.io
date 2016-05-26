@@ -1,0 +1,189 @@
+$thumb-w: 1.25em;
+$thumb-h: 1.5em;
+$thumb-bc: #87bd32;
+$thumb-c: #6cac11;
+
+$track-min: 1;
+$track-max: 11;
+$track-u: 2.5em;
+$track-w: ($track-max - $track-min)*$track-u + $thumb-w;
+$track-h: .75em;
+$track-bg: 
+  linear-gradient(90deg, 
+      #bbdc89 .125em, transparent .125em ) 
+    repeat-x ($thumb-w - .125em)/2 50% #def9b1;
+$track-bg-s: ($track-u - 0.25em) 70%;
+$track-fill: 
+  linear-gradient(to right bottom, #6f9730, #9ecd59) no-repeat;
+
+$ruler-txt: ();
+$ruler-sep-w: .125em;
+$ruler-sep-h: 1.25em;
+$ruler-fs: .75;
+$ruler-bp: 100%/($track-max - $track-min + 1);
+
+@for $i from $track-min through $track-max {
+  $ruler-txt: append($ruler-txt, 2003+$i);
+}
+
+@mixin track($flag: false) {
+  box-sizing: border-box;
+  border: solid 1px #dbdadf;
+  width: $track-w; height: $track-h;
+  background: $track-bg;
+  background-size: $track-bg-s;
+  
+  @if $flag {
+    .js & {
+      background: $track-fill, $track-bg;
+      background-size: 
+        ($thumb-w/2 + (3 - $track-min)*$track-u) 100%,
+        $track-bg-s;
+    }
+  }
+}
+
+@mixin fill() {
+  box-sizing: border-box;
+  border: solid 1px #66534e;
+  background: $track-fill;
+}
+
+@mixin thumb() {
+  box-sizing: border-box;
+  border: solid .1875em $thumb-bc;
+  width: $thumb-w; height: $thumb-h;
+  box-shadow: inset 0 0 .125em rgba(darken($thumb-c, 15%), .5);
+  background: 
+    linear-gradient(-45deg, transparent 50%, #92bd3a 50%, #77b428)
+    $thumb-c;
+  cursor: ew-resize;
+}
+
+input[type='range'] {
+  &, 
+  &::-webkit-slider-runnable-track, 
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  
+  position: absolute;
+  bottom: 0; left: 30%;
+  border: solid 0 transparent;
+  border-width: 0 .5*$track-u 1.5*$ruler-sep-h;
+  padding: 0;
+  width: $track-w; height: 2*$thumb-h;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  font: 1em courier, monospace;
+  cursor: pointer;
+  
+  &::-webkit-slider-runnable-track {
+    position: relative;
+    @include track(true);
+  }
+  &::-moz-range-track {
+    @include track();
+  }
+  &::-ms-track {
+    @include track();
+    color: transparent;
+  }
+  
+  &::-moz-range-progress {
+    height: $track-h;
+    @include fill();
+  }
+  &::-ms-fill-lower {
+    @include fill();
+  }
+  
+  &::-webkit-slider-thumb {
+    position: relative;
+    margin-top: ($track-h - $thumb-h)/2;
+    @include thumb();
+    border-bottom-width: 0;
+  }
+  &::-moz-range-thumb {
+    border-radius: 0;
+    @include thumb();
+  }
+  &::-ms-thumb {
+    @include thumb();
+  }
+  
+  &::-webkit-slider-runnable-track, /deep/ #track {
+    &:before, &:after {
+      position: absolute;
+      top: 280%; left: 50%;
+      width: (($track-max - $track-min + 1)*$track-u - $ruler-sep-w)/$ruler-fs;
+      height: $ruler-sep-h/$ruler-fs;
+      transform: translate(-50%);
+      font: 700 #{$ruler-fs*1em}/ #{$ruler-sep-h/$ruler-fs} courier, monospace;
+      text-indent: ($track-u/2 - 1.625em)/$ruler-fs;
+      text-shadow: 0 1px currentColor;
+    }
+    &:before {
+      color: #3466a2;
+      text-align: center;
+      word-spacing: ($track-u - 2.6em)/$ruler-fs;
+      content: '#{$ruler-txt}';
+    }
+    &:after {
+      background: 
+        linear-gradient(90deg, 
+            #c5c4c1 $ruler-sep-w/$ruler-fs, transparent $ruler-sep-w/$ruler-fs) 
+          -$ruler-sep-w/$ruler-fs 0;
+      background-size: $track-u/$ruler-fs 100%;
+      .js & { color: green; }
+    }
+  }
+  
+  &::-webkit-slider-thumb, /deep/ #thumb {
+    &:before {
+      $l: .8*$thumb-w/$ruler-fs/sqrt(2);
+      
+      box-sizing: border-box;
+      position: absolute;
+      top: 100%; left: 50%;
+      border: solid .1875em/$ruler-fs $thumb-bc;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      width: $l; height: $l;
+      transform: translate(-50%, -53%) rotate(-45deg);
+      box-shadow: inset 1px -1px 1px rgba(darken($thumb-c, 15%), .5);
+      background: $thumb-c;
+      background-clip: padding-box;
+      content: '';
+    }
+  }
+  
+  @for $i from $track-min through $track-max {
+    .js &[value='#{$i}'] {
+      &::-webkit-slider-runnable-track {
+        background-size: 
+          ($thumb-w/2 + ($i - $track-min)*$track-u) 100%,
+          $track-bg-s;
+      }
+      &::-webkit-slider-runnable-track, /deep/ #track {
+        &:before {
+          clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 0 0, 
+            ($i - $track-min)*$ruler-bp 0, 
+            ($i - $track-min + 1)*$ruler-bp 0, 
+            ($i - $track-min + 1)*$ruler-bp 100%, 
+            ($i - $track-min)*$ruler-bp 100%, 
+            ($i - $track-min )*$ruler-bp 0);
+        }
+        &:after {
+          text-indent: ((2*$i - 1)*$track-u/2 - 1.625em)/$ruler-fs;
+          content: '#{nth($ruler-txt, $i)}';
+        }
+      }
+    }
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 .125em lime;
+  }
+}

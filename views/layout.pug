@@ -1,0 +1,54 @@
+doctype html
+html(ng-app="app")
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="author" content="Jamal Senouci")
+        block meta
+        base(href="/my-base")
+        link(rel="shortcut icon" href="../favicon.ico")
+        link(rel="stylesheet" href="public/styles/main.css" type="text/css")
+        link(href="//fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300&amp;subset=latin,latin-ext&amp;anp;v2" rel="stylesheet" type="text/css")
+        style.
+          #scrollArea {
+            height: 280px;
+            overflow: auto;
+          }
+
+          #bottom {
+            display: block;
+            margin-top: 2000px;
+          }
+    body(ng-controller="ScrollController")
+      header#header.clearfix
+        h1#headertitle.col-xs-6
+          a(href="/") Jamal Senouci
+        block nav
+          nav#headernav.col-sm-6
+            ul.pull-right
+              li
+                a(ng-click="gotoHash('experience')") Experience
+              li
+                a(ng-click="gotoHash('contact')") Contact
+              //
+                li
+                  a(href="/login") Login
+      section.clearfix
+          block content
+      footer
+          p.col-xs-12.col-sm-3 Jamal Senouci © 2015
+          div#home
+            a.col-xs-4(href='https://uk.linkedin.com/in/jamalsenouci')
+              img.webicon(src='public/styles/webicons/webicon-linkedin.svg' alt='linkedin logo')
+            a.col-xs-4(href='https://github.com/jamalsenouci')
+              img.webicon(src='public/styles/webicons/webicon-github.svg' alt='github logo')
+            a.col-xs-4(href='https://www.facebook.com/jamalsenouci')
+              img.webicon(src='public/styles/webicons/webicon-facebook.svg' alt='facebook logo')
+      script(src="public/scripts/min/AnimatedScroll.js")
+      script(src="bower_components/angular/angular.min.js")
+      script(src="public/scripts/anchorScroll.js")
+      script(src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js")
+      script.
+         smoothScroll.init();
+      block scripts
