@@ -88,17 +88,28 @@ block content
                         | Econometrics Lead at Starcom MediaVest Group Dubai, the leading media agency in the MENA region.
                 .col-xs-4
                         | Feb - Mar 2015
-        .mediacom.cv.row(style="opacity:1; z-index:100; position:absolute")
+        .mediacom.cv.row(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.ohal-group.com")
                                 img.img-responsive(src="public/images/mediacom.jpg" alt="mediacom logo")
                 .col-xs-4
-                        strong Senior Analyst
+                        strong Project Manager
                         br
                         br
                         | Working within the Business Science department of MediaCom, one of the world's leading media agencies.
                 .col-xs-4
-                        | April 2015 - Present
+                        | April 2015 - August 2016
+        .dunnhumby.cv.row(style="opacity:1; z-index:100; position:absolute")
+                .col-xs-4
+                        a(href="http://www.dunnhumby.com")
+                                img.img-responsive(src="public/images/dunnhumby.png" alt="dunnhumby logo")
+                .col-xs-4
+                        strong Analytical Product Manager
+                        br
+                        br
+                        | Working within the Price and Promotions capability of Dunnhumby, the worlds leading customer science company.
+                .col-xs-4
+                        | August 2016 - Present
         .essex.cv.row(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.essex.ac.uk")
@@ -118,22 +129,8 @@ block content
     a#contact(style="display: block; position: relative; top: -20px; visibility: hidden;")
     .container.section#contact
         h2 Get in Touch
-        form(role="form" method="post" action="#contact" class="col-xs-offset-2 col-xs-8")
-            div(class="form-group")
-                label(for="name") *Name
-                input(id="name" name="name" placeholder="Name" type="text" required="" class="form-control")
-            div(class="form-group")
-                label(for="email") *Email
-                input(id="email" name="email" placeholder="Email" type="email" required="" class="form-control")
-            div(class="form-group")
-                label(for="message") *Message
-                textarea(id="message" name="message" placeholder="Message" rows="3" required="" class="form-control")
-            input(id="submit" name="submit" type="submit" value="Submit" class="btn btn-success")
-        if(typeof msg !== 'undefined')
-            if(!!err)
-                div(class='msgbox err') #{msg}
-            else
-                div(class='msgbox success') #{msg}
+        p.text-center solve the riddle:
+        p.text-center email = jamalsenouci@[1.0 × 10100]mail.com
 block scripts
     script(src="http://d3js.org/d3.v3.min.js")
-    script(src='public/scripts/min/cv.js')
+    script(src='public/scripts/cv.js')

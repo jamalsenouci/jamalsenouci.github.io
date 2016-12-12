@@ -3358,3 +3358,7 @@ div.starcom img, div.glanceirw img {
 #webdesign.clicked:hover, #opensource.clicked:hover, #visualisations.clicked:hover, #datascience.clicked:hover {
   border-radius: 0;
 }
+
+.text-center{
+  text-align:center;
+}

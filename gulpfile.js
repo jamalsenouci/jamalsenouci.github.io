@@ -152,8 +152,8 @@ gulp.task('serve', ['styles'], function() {
 });
 
 // Build Production Files, the Default Task
-gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['templates', 'jshint', 'images'], cb);
+gulp.task('default', function (cb) {
+  runSequence('styles', ['templates', 'images'], cb);
 });
 
 // Run PageSpeed Insights

@@ -11,11 +11,11 @@ $icon-font-path : '../fonts/';
 
 @import "webicons";
 
-.clearfix:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: table; 
-   height: 0; 
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: table;
+   height: 0;
    clear: both;
 }
 
@@ -83,7 +83,7 @@ h1, h2, h3{
 	font-weight: 300;
 	font-style: normal;
 	font-size:2.8em;
-	
+
 }
 li{
 	list-style-type:none;
@@ -136,8 +136,8 @@ div.starcom img, div.glanceirw img{
 }
 .section{
 	min-height:100vh;
-	display: block; 
-	position: relative; 
+	display: block;
+	position: relative;
 	margin-top:50px;
 }
 
@@ -261,4 +261,8 @@ stroke: #000;
 	&:hover{
 		border-radius:0;
 	}
+}
+
+.text-center{
+  text-align:center;
 }

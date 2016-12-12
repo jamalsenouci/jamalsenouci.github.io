@@ -49,8 +49,8 @@ var drawPaths = function(graphContainer, data, className, position, x, color){
 		.enter()
 			.append('path')
 			.classed(className, true)
-		    .attr('fill',  function(d,i){ 
-				return color(position * i); 
+		    .attr('fill',  function(d,i){
+				return color(position * i);
 			})
 		    .attr('fill-opacity', 0.6)
 		    .attr('d',function(d){ return getPath(d.diameter, position); })
@@ -84,6 +84,16 @@ var data = [
             'description':'',
             'default_item':false
         },
+				{
+            'type':'Work',
+            'institution':'Dunnhumby',
+            'class':'dunnhumby',
+            'title':'Product Manager',
+            'from':'2016-08-01',
+            'to':null,
+            'description':'',
+            'default_item':false
+        },
         {
             'type':'Work',
             'institution':'Ohal Ltd',
@@ -113,14 +123,14 @@ var data = [
             'to':'2015-03-31',
             'description':'',
             'default_item':true
-        },        
+        },
         {
             'type':'Work',
             'institution':'MediaCom',
             'class':'mediacom',
             'title':'Senior Analyst',
             'from':'2015-04-13',
-            'to':null,
+            'to':'2016-08-01',
             'description':'',
             'default_item':true
         }
