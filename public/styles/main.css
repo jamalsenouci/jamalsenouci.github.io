@@ -3225,7 +3225,7 @@ div.starcom img, div.glanceirw img {
 }
 
 .section {
-  min-height: 100vh;
+  min-height: 50vh;
   display: block;
   position: relative;
   margin-top: 50px;
@@ -3360,5 +3360,9 @@ div.starcom img, div.glanceirw img {
 }
 
 .text-center{
+  text-align:center;
+}
+
+ul{
   text-align:center;
 }

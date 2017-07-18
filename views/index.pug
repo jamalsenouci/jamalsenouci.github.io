@@ -1,7 +1,7 @@
 extends layout.pug
 block meta
   title Jamal Senouci
-  meta(name="description" content="Personal website of Jamal Senouci - Data Scientist based in the UK")
+  meta(name="description" content="Personal website of Jamal Senouci - Product Manager/Data Scientist based in the UK")
   meta(name="keywords" content="Personal Jamal Senouci CV ")
 block content
     a#experience(style="display: block; position: relative; top: -60px; visibility: hidden;")
@@ -122,15 +122,14 @@ block content
                 .col-xs-4
                         | July 2014
         #cv-vis.col-md-12
-    //
-        .container.section#portfolio
-            h2 Portfolio
-            #port-vis
-    a#contact(style="display: block; position: relative; top: -20px; visibility: hidden;")
-    .container.section#contact
-        h2 Get in Touch
-        p.text-center solve the riddle:
-        p.text-center email = jamalsenouci@[1.0 × 10100]mail.com
+    .container.section#projects
+        h2 Projects
+        ul
+            a(href="projects/causalimpact.html")
+                li CausalImpact - a python port of the R package CausalImpact (WIP)
+            a(href="projects/syntaxfold.html")
+                li SyntaxFold - a sublime text plugin that folds code based on start and end markers
+        #port-vis
 block scripts
     script(src="http://d3js.org/d3.v3.min.js")
     script(src='public/scripts/cv.js')

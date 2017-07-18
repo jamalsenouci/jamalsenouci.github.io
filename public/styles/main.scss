@@ -135,7 +135,7 @@ div.starcom img, div.glanceirw img{
 	margin-top:-40px;
 }
 .section{
-	min-height:100vh;
+	min-height:50vh;
 	display: block;
 	position: relative;
 	margin-top:50px;
@@ -265,4 +265,12 @@ stroke: #000;
 
 .text-center{
   text-align:center;
+}
+
+ul{
+	text-align:center;
+}
+
+#contact{
+	min-height:0;
 }
