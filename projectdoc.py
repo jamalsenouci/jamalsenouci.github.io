@@ -12,6 +12,6 @@ html_exporter.template_file = 'basic'
 
 (body, resources) = html_exporter.from_notebook_node(nb)
 styles = "<style>\n" + "\n".join(resources["inlining"]["css"]) + "\n</style>\n"
-html = prefix + styles + body
+html = styles + body
 with open("projects/causalimpact.html", "w") as f:
     f.write(html)
