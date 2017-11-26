@@ -106,20 +106,10 @@ var data = [
         },
         {
             'type':'Work',
-            'institution':'Gulf Researcher',
-            'class':'gulfresearcher',
-            'title':'Temporary Senior Research Analyst',
-            'from':'2015-01-01',
-            'to':'2015-02-11',
-            'description':'',
-            'default_item':false
-        },
-        {
-            'type':'Work',
             'institution':'Starcom MediaVest Group',
             'class':'starcom',
-            'title':'Senior Analyst',
-            'from':'2015-02-15',
+            'title':'Senior Data Scientist',
+            'from':'2014-10-15',
             'to':'2015-03-31',
             'description':'',
             'default_item':true
