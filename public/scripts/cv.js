@@ -1,4 +1,5 @@
 'use strict';
+
 var normalize = function (data){
 		var format = d3.time.format('%Y-%m-%d');
 		var parseDate = format.parse;
@@ -38,7 +39,7 @@ var getPath = function (diameter, position)
 var showInfo = function (className)
 {
 	d3.selectAll('div.cv').transition().style('opacity', '0').style('z-index',0);
-	d3.selectAll('div.'+className).transition().style('opacity', '1').style('z-index',100);
+	d3.selectAll('div.'+className).transition().style('opacity', '1').style('z-index',9);
 };
 
 
@@ -169,13 +170,13 @@ var data = [
     ]
 ];
 
-var init = function(){
+var init = function(startDate, endDate, categories=['work', 'study']){
 	var viewBox = '0 0 960 500',
 	aspectRatio = 'xMidYMid';
 	var width = document.getElementById('cv-vis').offsetWidth - 20,
 	height = 500;
 
-
+	document.querySelector('#cv-vis').innerHTML='';
 	var svg = d3.select('body')
 		.select('#cv-vis')
 		.append('svg')
@@ -184,7 +185,8 @@ var init = function(){
 		.attr('viewBox', viewBox)
 		.attr('preserveAspectRatio', aspectRatio);
 
-	var x = d3.time.scale().domain([new Date(2008, 7, 1), new Date()]).range([0, 960]);
+	
+	var x = d3.time.scale().domain([startDate, endDate]).range([0, 960]);
 
 	var xAxis = d3.svg.axis()
 			.scale(x)
@@ -199,14 +201,70 @@ var init = function(){
 	graphContainer.append('g')
 			.attr('class', 'x axis')
 			.call(xAxis);
+	var multipliers = [-1, 1],
+		colorscale = [d3.scale.category10(),d3.scale.category10()];
+	if (categories.indexOf('work') > -1){
+		calculateDiameter(data[0], x);
+		drawPaths(graphContainer, data[0], categories[0], multipliers[0] , x, colorscale[0]);	
+	}
+	if (categories.indexOf('study') > -1){
+		calculateDiameter(data[1], x);
+		drawPaths(graphContainer, data[1], categories[1], multipliers[1] , x, colorscale[1]);	
+	}
+	
+};
+
+
+$( document ).ready(function(){
+	var today = new Date();
+	$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+	$('#start').datepicker('update', new Date(2008, 9, 13));
+	$('#end').datepicker('setStartDate', new Date(2008, 9, 13));
+	$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+	$('#end').datepicker('update', today);
+	$('#end').datepicker('setEndDate', today);
+	var startDate = $('#start').datepicker('getDate')
+	var endDate = $('#end').datepicker('getDate')
 
 	data.forEach(function(d,i) {
-		var categories = ['work', 'study'],
-			multipliers = [-1, 1],
-			colorscale = [d3.scale.category10(),d3.scale.category10()];
 		normalize(d);
-		calculateDiameter(d,x);
-		drawPaths(graphContainer, d, categories[i], multipliers[i] , x, colorscale[i]);
 	});
-};
-init();
+
+	init(startDate, endDate);
+
+	$('#start').datepicker().on('changeDate', function(e) {
+		var endDate = $('#end').datepicker('getDate')
+        init(e.date, endDate)
+    });
+    $('#end').datepicker().on('changeDate', function(e) {
+    	var startDate = $('#start').datepicker('getDate')
+        init(startDate, e.date)
+    });
+    var categories = ['work', 'study']
+    $('#workbox').change(function() {
+	    if(this.checked) {
+	    	categories.push('work')
+	    }
+	    else{
+	    	var index =  categories.indexOf('work')
+	    	categories.splice(index, 1);
+	    }
+		var startDate = $('#start').datepicker('getDate')
+		var endDate = $('#end').datepicker('getDate')
+	    init(startDate, endDate, categories)
+	});
+	$('#studybox').change(function() {
+	    if(this.checked) {
+	    	categories.push('study')
+	    }
+	    else{
+	    	var index =  categories.indexOf('study')
+	    	categories.splice(index, 1);
+	    }
+		var startDate = $('#start').datepicker('getDate')
+		var endDate = $('#end').datepicker('getDate')
+	    init(startDate, endDate, categories)
+	});
+})
+
+

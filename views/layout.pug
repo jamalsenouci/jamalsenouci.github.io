@@ -9,7 +9,10 @@ html(ng-app="app")
         base(href="/my-base")
         link(rel="shortcut icon" href="../favicon.ico")
         link(rel="stylesheet" href="public/styles/main.css" type="text/css")
-        link(href="//fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300&amp;subset=latin,latin-ext&amp;anp;v2" rel="stylesheet" type="text/css")
+        link(href="//fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300&amp;subset=latin,latin-ext&amp;anp;v2" rel="stylesheet" 
+        type="text/css")
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css")
+
         style.
           #scrollArea {
             height: 280px;
@@ -44,18 +47,14 @@ html(ng-app="app")
       section.clearfix
           block content
       footer
-          p.col-xs-12.col-sm-3 Jamal Senouci © 2015
+          p.col-xs-12.col-sm-3 Jamal Senouci © 2017
           div#home
+            a.col-xs-2(href='https://uk.linkedin.com/in/jamalsenouci')
             a.col-xs-4(href='https://uk.linkedin.com/in/jamalsenouci')
               img.webicon(src='public/styles/webicons/webicon-linkedin.svg' alt='linkedin logo')
             a.col-xs-4(href='https://github.com/jamalsenouci')
               img.webicon(src='public/styles/webicons/webicon-github.svg' alt='github logo')
-            a.col-xs-4(href='https://www.facebook.com/jamalsenouci')
-              img.webicon(src='public/styles/webicons/webicon-facebook.svg' alt='facebook logo')
       script(src="public/scripts/min/AnimatedScroll.js")
-      script(src="bower_components/angular/angular.min.js")
-      script(src="public/scripts/anchorScroll.js")
-      script(src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js")
-      script.
-         smoothScroll.init();
+      script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous")
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js")
       block scripts

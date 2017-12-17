@@ -3,24 +3,42 @@ block meta
   title Jamal Senouci
   meta(name="description" content="Personal website of Jamal Senouci - Product Manager/Data Scientist based in the UK")
   meta(name="keywords" content="Personal Jamal Senouci CV ")
+  link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css")
 block content
     a#experience(style="display: block; position: relative; top: -60px; visibility: hidden;")
     .container.section#experience
         h2 Experience
-        a(href='http://1drv.ms/19Ku5gr' target="_blank")
+        .row
+            .col-xs-3
+            div(class="col-xs-6 datepicker input-group input-daterange" style="margin-bottom:30px")
+                input(id="start" type="text" class="form-control" value="2008-13-13")
+                div(class="input-group-addon") to
+                input(id="end" type="text" class="form-control" value="2017-04-19")
+        .row#checkbox
+            .col-xs-5
+            .col-xs-1.form-check
+                label.form-check-label
+                    input#workbox(type="checkbox" class="form-check-input" checked)
+                    | Work
+            .col-xs-1.form-check
+                label.form-check-label
+                    input#studybox(type="checkbox" class="form-check-input" checked)
+                    | Study
+        hr
+        a(href='http://1drv.ms/19Ku5gr' target="_blank", style="z-index=500")
             i(class="glyphicon glyphicon-download pull-right" aria-hidden="true")
-        .ohal.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .ohal.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
-                        a(href="http://www.ohal-group.com")
-                                img.img-responsive(src="public/images/ohal_logo.png" alt="Ohal Logo")
+                        a(href="http://www.gaintheory.com")
+                                img.img-responsive(src="public/images/gaintheory.png" alt="gain theory Logo")
                 .col-xs-4
                         strong Senior Analyst
                         br
                         br
-                        | Ohal is an econometrics consultancy sitting within WPP group that focuses on measuring effectiveness of marketing campaigns.
+                        | Gain Theory is an econometrics consultancy sitting within WPP group that focuses on measuring effectiveness of marketing campaigns.
                 .col-xs-4
                         | 2012-2014
-        .warwick.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .warwick.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.warwick.ac.uk")
                                 img.img-responsive(src="public/images/warwick.jpg" alt="warwick logo")
@@ -31,7 +49,7 @@ block content
                         | Dissertation title: "A Bootstrapped Approach to UK Bank Risk and Shareholder Control"
                 .col-xs-4
                         | 2011-2012
-        .york.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .york.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.york.ac.uk")
                                 img.img-responsive(src="public/images/york.jpg" alt="york logo")
@@ -42,7 +60,7 @@ block content
                         | Graduated with Upper Second Class Honours
                 .col-xs-4
                         | 2008-2011
-        .glanceirw.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .glanceirw.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.glanceirw.com")
                                 img.img-responsive(src="public/images/glanceirw.png" alt="glanceirw logo")
@@ -55,7 +73,7 @@ block content
                         | using AngularJS
                 .col-xs-4
                         | Summer 2011
-        .stanford.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .stanford.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.stanford.edu")
                                 img.img-responsive(src="public/images/stanford.png" alt="stanford logo")
@@ -66,31 +84,20 @@ block content
                         | Applications of Artificial Intelligence to dealing with increasingly large datasets.
                 .col-xs-4
                         | Sep-Dec 2014
-        .gulfresearcher.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .starcom.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
-                        a(href="http://www.gulfresearcher.com/en/")
-                                img.img-responsive(src="public/images/gulfresearcher.jpg" alt="gulf researcher logo")
-                .col-xs-4
-                        strong Temporary Senior Research Analyst
-                        br
-                        br
-                        | Research into Cosmetic, Healthcare, Public Sector and FMCG across MENA Region
-                .col-xs-4
-                        | Jan-Feb 2015
-        .starcom.cv.row(style="opacity:0; z-index:0; position:absolute")
-                .col-xs-4
-                        a(href="http://www.smvgroup.com")
+                        a(href="http://www.starcomww.com/")
                                 img.img-responsive(src="public/images/starcom.jpg" alt="Starcom logo")
                 .col-xs-4
-                        strong Senior Analyst
+                        strong Senior Data Scientist
                         br
                         br
                         | Econometrics Lead at Starcom MediaVest Group Dubai, the leading media agency in the MENA region.
                 .col-xs-4
                         | Feb - Mar 2015
-        .mediacom.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .mediacom.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
-                        a(href="http://www.ohal-group.com")
+                        a(href="https://www.mediacom.com/en")
                                 img.img-responsive(src="public/images/mediacom.jpg" alt="mediacom logo")
                 .col-xs-4
                         strong Project Manager
@@ -99,7 +106,7 @@ block content
                         | Working within the Business Science department of MediaCom, one of the world's leading media agencies.
                 .col-xs-4
                         | April 2015 - August 2016
-        .dunnhumby.cv.row(style="opacity:1; z-index:100; position:absolute")
+        .dunnhumby.cv.row.col-xs-12(style="opacity:1; z-index:9; position:absolute")
                 .col-xs-4
                         a(href="http://www.dunnhumby.com")
                                 img.img-responsive(src="public/images/dunnhumby.png" alt="dunnhumby logo")
@@ -110,10 +117,10 @@ block content
                         | Working within the Price and Promotions capability of Dunnhumby, the worlds leading customer science company.
                 .col-xs-4
                         | August 2016 - Present
-        .essex.cv.row(style="opacity:0; z-index:0; position:absolute")
+        .essex.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
                         a(href="http://www.essex.ac.uk")
-                                img(src="public/images/essex.jpg" alt="essex logo")
+                                img.img-responsive(src="public/images/essex.jpg" alt="essex logo")
                 .col-xs-4
                         strong Agent-based Modelling Course
                         br
@@ -124,12 +131,25 @@ block content
         #cv-vis.col-md-12
     .container.section#projects
         h2 Projects
-        ul
-            a(href="projects/causalimpact.html")
-                li CausalImpact - a python port of the R package CausalImpact (WIP)
-            a(href="https://github.com/jamalsenouci/sublimetext-syntaxfold")
-                li SyntaxFold - a sublime text plugin that folds code based on start and end markers
+        .row
+            .col-xs-2
+            ul.col-xs-8
+                    li 
+                        a(href="projects/causalimpact.html") CausalImpact
+                        |  - a python port of the R package CausalImpact (WIP)  
+                    li 
+                        a(href="https://github.com/jamalsenouci/sublimetext-syntaxfold") SyntaxFold
+                        |  - a sublime text plugin that folds code based on start and end markers
+                    li 
+                        a(href="projects/epsilon.html") Epsilon
+                        |  - a python module for applied econometrics
         #port-vis
 block scripts
     script(src="http://d3js.org/d3.v3.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.en-GB.min.js")
     script(src='public/scripts/cv.js')
+
+        
+
+

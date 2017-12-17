@@ -23,7 +23,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 // Lint JavaScript
 gulp.task('jshint', function () {
-  return gulp.src(['/public/scripts/**/*.js','!/public/scripts/**/*.min.js'])
+  return gulp.src(['public/scripts/**/*.js','!public/scripts/**/*.min.js'])
     .pipe($.jshint({'predef': ['d3']}))
     .on('error', function (err) {
       this.emit('end');
@@ -41,12 +41,12 @@ gulp.task('jshint', function () {
 
 // optimize JavaScript
 gulp.task('scripts', function () {
-  return gulp.src(['/public/scripts/**/*.js','!/public/scripts/min/**/*'])
+  return gulp.src(['public/scripts/**/*.js','!public/scripts/min/**/*'])
     .pipe($.uglify())
     .on('error', function (err) {
       this.emit('end');
     })
-    .pipe(gulp.dest('/public/scripts/min'))
+    .pipe(gulp.dest('public/scripts/min'))
     .pipe(reload({stream: true}));
 });
 
@@ -57,30 +57,30 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest('/public/images'))
+    .pipe(gulp.dest('public/images'))
     .pipe(reload({stream: true, once: true}))
     .pipe($.size({title: 'images'}));
 });
 
 // Automatically Prefix CSS
 gulp.task('styles:css', function () {
-  return gulp.src('/public/tmp/main.css')
+  return gulp.src('public/tmp/*.css')
     .pipe($.autoprefixer('last 1 version'))
     .pipe($.minifyCss())
-    .pipe(gulp.dest('/public/styles/'))
+    .pipe(gulp.dest('public/styles/'))
     .pipe(reload({stream: true}))
     .pipe($.size({title: 'styles:css'}));
 });
 
 // Compile Any Other Sass Files You Added (/styles)
 gulp.task('styles:scss', function () {
-  return gulp.src('/public/styles/**/*.scss')
+  return gulp.src('public/styles/*.scss')
     .pipe($.sass())
     .on('error', function (err) {
       this.emit('end');
     })
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('/public/tmp/'))
+    .pipe(gulp.dest('public/tmp/'))
     .pipe($.size({title: 'styles:scss'}));
 });
 
@@ -122,12 +122,12 @@ gulp.task('html', function () {
 /*/
 
 
-// Watch files for changes & reload
-gulp.task('serve', ['styles'], function() {
-  browserSync({
+gulp.task('browser-sync', function () {
+
+  // for more browser-sync config options: http://www.browsersync.io/docs/options/
+ browserSync.init({
     port: 5000,
     notify: false,
-    logPrefix: 'PSK',
     snippetOptions: {
       rule: {
         match: '<span id="browser-sync-binding"></span>',
@@ -143,26 +143,23 @@ gulp.task('serve', ['styles'], function() {
     server: {
       middleware: [historyApiFallback()]
     }
-  });
-
-  gulp.watch(['/**/*.html', '!bower_components/**/*.html'], reload);
-  gulp.watch(['/public/styles/**/*.scss'], ['styles', reload]);
-  gulp.watch(['/public/scripts/**/*.js'], reload);
-  gulp.watch(['/public/images/**/*'], reload);
+  })
 });
+
+
+// Watch Files For Changes & Reload
+gulp.task('serve', ['browser-sync'], function () {
+  gulp.watch(['views/*.pug'],  ['templates']);
+  gulp.watch(['**/*.html', '!bower_components/**/*.html'],  reload);
+  gulp.watch(['public/styles/**/*.scss'], ['styles', reload]);
+  gulp.watch(['public/scripts/**/*.js'], reload);
+  gulp.watch(['public/images/**/*'], reload);
+
+});
+  
+
 
 // Build Production Files, the Default Task
 gulp.task('default', function (cb) {
   runSequence('styles', ['templates', 'images'], cb);
 });
-
-// Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', pagespeed.bind(null, {
-  // By default, we use the PageSpeed Insights
-  // free (no API key) tier. You can use a Google
-  // Developer API key if you have one. See
-  // http://goo.gl/RkN0vE for info key: 'YOUR_API_KEY'
-  url: 'https://glanceirwcaravanpark.com',
-  strategy: 'mobile'
-}));

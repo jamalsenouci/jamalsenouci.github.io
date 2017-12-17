@@ -36,6 +36,7 @@
     "run-sequence": "^1.1.5"
   },
   "dependencies": {
-    "gulp-load-plugins": "^1.2.0"
+    "gulp-load-plugins": "^1.2.0",
+    "pikaday": "^1.7.0"
   }
 }
