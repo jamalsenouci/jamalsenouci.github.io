@@ -25,7 +25,7 @@ block content
                     input#studybox(type="checkbox" class="form-check-input" checked)
                     | Study
         hr
-        a(href='http://1drv.ms/19Ku5gr' target="_blank", style="z-index=500")
+        a(href='https://1drv.ms/w/s!AnGiEFMYVEJ_kXpFjO9JFwf3p36G' target="_blank", style="z-index=500")
             i(class="glyphicon glyphicon-download pull-right" aria-hidden="true")
         .ohal.cv.row.col-xs-12(style="opacity:0; z-index:0; position:absolute")
                 .col-xs-4
@@ -111,7 +111,7 @@ block content
                         a(href="http://www.dunnhumby.com")
                                 img.img-responsive(src="public/images/dunnhumby.png" alt="dunnhumby logo")
                 .col-xs-4
-                        strong Analytical Product Manager
+                        strong Senior Product Manager
                         br
                         br
                         | Working within the Price and Promotions capability of Dunnhumby, the worlds leading customer science company.
@@ -128,7 +128,7 @@ block content
                         | A week-long course in applied Agent-based Modelling with application to Marketing.
                 .col-xs-4
                         | July 2014
-        #cv-vis.col-md-12
+        #cv-vis.col-xs-12
     .container.section#projects
         h2 Projects
         .row
@@ -143,13 +143,15 @@ block content
                     li 
                         a(href="projects/epsilon.html") Epsilon
                         |  - a python module for applied econometrics
-        #port-vis
+        #port-vis.col-xs-12
+        //.row
+            .proj.causal.col-xs-6
+                h3 causalimpact
+                h4 Description
+                h4 Example Notebook
 block scripts
     script(src="http://d3js.org/d3.v3.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.en-GB.min.js")
     script(src='public/scripts/cv.js')
-
-        
-
-
+    //script(src='public/scripts/port-vis.js')
