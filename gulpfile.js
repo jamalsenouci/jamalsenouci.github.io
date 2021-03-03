@@ -2,11 +2,8 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
-var pagespeed = require('psi');
 var reload = browserSync.reload;
-var historyApiFallback = require('connect-history-api-fallback');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -51,7 +48,7 @@ gulp.task('scripts', function () {
 });
 
 // Optimize Images
-gulp.task('images', function () {
+const images = () => {
   return gulp.src('public/images/*.jpg')
     .pipe($.imagemin({
       progressive: true,
@@ -59,107 +56,46 @@ gulp.task('images', function () {
     }))
     .pipe(gulp.dest('public/images'))
     .pipe(reload({stream: true, once: true}))
-    .pipe($.size({title: 'images'}));
-});
+    .pipe($.size({title: 'images'}));  
+}
 
 // Automatically Prefix CSS
-gulp.task('styles:css', function () {
+const stylesCSS = () => {
   return gulp.src('public/tmp/*.css')
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe($.minifyCss())
-    .pipe(gulp.dest('public/styles/'))
-    .pipe(reload({stream: true}))
-    .pipe($.size({title: 'styles:css'}));
-});
+  .pipe($.autoprefixer('last 1 version'))
+  .pipe($.minifyCss())
+  .pipe(gulp.dest('public/styles/'))
+  .pipe(reload({stream: true}))
+  .pipe($.size({title: 'styles:css'}));
+}
 
 // Compile Any Other Sass Files You Added (/styles)
-gulp.task('styles:scss', function () {
+const stylesSCSS = () => {
   return gulp.src('public/styles/*.scss')
-    .pipe($.sass())
-    .on('error', function (err) {
-      this.emit('end');
-    })
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('public/tmp/'))
-    .pipe($.size({title: 'styles:scss'}));
-});
+  .pipe($.sass())
+  .on('error', function (err) {
+    this.emit('end');
+  })
+  .pipe($.autoprefixer('last 1 version'))
+  .pipe(gulp.dest('public/tmp/'))
+  .pipe($.size({title: 'styles:scss'}))
+}
 
 // Output Final CSS Styles
-gulp.task('styles', function (cb) {
-  runSequence('styles:scss', 'styles:css', cb);
-});
+const styles = () => {
+  gulp.series(stylesSCSS, stylesCSS);
+}
 
-
-
-gulp.task('templates', function templates() {
+const templates = () => {
   return gulp.src(['views/**.pug', '!views/layout.pug'])
     .pipe($.pug())
     .pipe(gulp.dest('./'));
-});
-/*
-// Scan Your HTML For Assets & Optimize Them
-gulp.task('html', function () {
-  return gulp.src('//**//*.html')
-    .pipe($.useref.assets({searchPath: '{.tmp,public}'}))
-    // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify()))
-    // Concatenate And Minify Styles
-    .pipe($.if('*.css', $.csso()))
-    // Remove Any Unused CSS
-    // Note: If not using the Style Guide, you can delete it from
-    // the next line to only include styles your project uses.
-    .pipe($.if('*.css', $.uncss({ html: ['/index.html'] })))
-    .pipe($.useref.restore())
-    .pipe($.useref())
-    // Update Production Style Guide Paths
-    .pipe($.replace('components/components.css', 'components/main.min.css'))
-    // Minify Any HTML
-    .pipe($.minifyHtml())
-    // Output Files
-    .pipe(gulp.dest('dist'))
-    .pipe($.size({title: 'html'}));
-});
-/*/
-
-
-gulp.task('browser-sync', function () {
-
-  // for more browser-sync config options: http://www.browsersync.io/docs/options/
- browserSync.init({
-    port: 5000,
-    notify: false,
-    snippetOptions: {
-      rule: {
-        match: '<span id="browser-sync-binding"></span>',
-        fn: function(snippet) {
-          return snippet;
-        }
-      }
-    },
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: {
-      middleware: [historyApiFallback()]
-    }
-  })
-});
-
-
-// Watch Files For Changes & Reload
-gulp.task('serve', ['browser-sync'], function () {
-  gulp.watch(['views/*.pug'],  ['templates']);
-  gulp.watch(['**/*.html', '!bower_components/**/*.html'],  reload);
-  gulp.watch(['public/styles/**/*.scss'], ['styles', reload]);
-  gulp.watch(['public/scripts/**/*.js'], reload);
-  gulp.watch(['public/images/**/*'], reload);
-
-});
-  
-
+}
 
 // Build Production Files, the Default Task
-gulp.task('default', function (cb) {
-  runSequence('styles', ['templates', 'images'], cb);
-});
+const defaultTask = (cb) => {
+  gulp.series(styles, gulp.parallel(templates, images))
+  cb()
+}
+
+exports.default = defaultTask
