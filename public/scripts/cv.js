@@ -89,12 +89,13 @@ var data = [
             'type':'Work',
             'institution':'Dunnhumby',
             'class':'dunnhumby',
-            'title':'Product Manager',
+            'title':'Senior Product Manager',
             'from':'2016-08-01',
-            'to':null,
+            'to':'2021-08-01',
             'description':'',
             'default_item':false
-        },
+		},
+	
         {
             'type':'Work',
             'institution':'Ohal Ltd',

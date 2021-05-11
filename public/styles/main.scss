@@ -1,14 +1,5 @@
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@use '../../node_modules/bootstrap/scss/bootstrap';
 $icon-font-path : '../../fonts/';
-@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons';
 //@import "compass/css3/transition";
 
 @import "webicons";
@@ -109,12 +100,12 @@ a {
 
 table {
   width: 600px;
+  height: 150px
 }
-table height 150px
+
 td  {
   padding: 10px;
   width: 350px img;
-  width-width: 350px;
 }
 
 img.linkedin {
