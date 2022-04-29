@@ -1,9 +1,0 @@
-{
-  "name": "jamalsenouci.github.io",
-  "version": "0.0.0",
-  "dependencies": {
-    "d3": "^3.5.16",
-    "bootstrap-sass": "^3.3.7",
-    "smooth-scroll": "^1.4.0"
-  }
-}
